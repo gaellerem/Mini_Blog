@@ -1,0 +1,914 @@
+{
+    "users": [
+        {
+            "id": 177,
+            "firstName": "Xavier",
+            "lastName": "Wright",
+            "maidenName": "",
+            "age": 37,
+            "gender": "male",
+            "email": "xavier.wright@x.dummyjson.com",
+            "phone": "+91 561-239-9006",
+            "username": "xavierw",
+            "password": "xavierwpass",
+            "birthDate": "1987-1-11",
+            "image": "https://dummyjson.com/icon/xavierw/128",
+            "bloodGroup": "AB+",
+            "height": 192.26,
+            "weight": 85.15,
+            "eyeColor": "Violet",
+            "hair": {
+                "color": "Green",
+                "type": "Straight"
+            },
+            "ip": "191.157.149.183",
+            "address": {
+                "address": "1497 Eighth Street",
+                "city": "Jacksonville",
+                "state": "Maryland",
+                "stateCode": "MD",
+                "postalCode": "37262",
+                "coordinates": {
+                    "lat": -82.732098,
+                    "lng": -118.759483
+                },
+                "country": "United States"
+            },
+            "macAddress": "b6:25:29:40:c0:e3",
+            "university": "Carnegie Mellon University",
+            "bank": {
+                "cardExpire": "03/27",
+                "cardNumber": "4449074075966103",
+                "cardType": "RuPay International",
+                "currency": "CNY",
+                "iban": "D6J2JIZAEEZJJ68IZRULK80M"
+            },
+            "company": {
+                "department": "Human Resources",
+                "name": "Kling Inc",
+                "title": "Marketing Manager",
+                "address": {
+                    "address": "1643 Madison Street",
+                    "city": "Chicago",
+                    "state": "West Virginia",
+                    "stateCode": "WV",
+                    "postalCode": "24314",
+                    "coordinates": {
+                        "lat": 6.085107,
+                        "lng": -113.724523
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "480-899",
+            "ssn": "571-857-220",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 74,
+            "firstName": "Penelope",
+            "lastName": "Harper",
+            "maidenName": "",
+            "age": 28,
+            "gender": "female",
+            "email": "penelope.harper@x.dummyjson.com",
+            "phone": "+44 907-679-1302",
+            "username": "penelopeh",
+            "password": "penelopehpass",
+            "birthDate": "1996-9-14",
+            "image": "https://dummyjson.com/icon/penelopeh/128",
+            "bloodGroup": "A-",
+            "height": 161.76,
+            "weight": 93.74,
+            "eyeColor": "Brown",
+            "hair": {
+                "color": "Blonde",
+                "type": "Straight"
+            },
+            "ip": "124.114.248.236",
+            "address": {
+                "address": "571 Washington Street",
+                "city": "Charlotte",
+                "state": "Pennsylvania",
+                "stateCode": "PA",
+                "postalCode": "26857",
+                "coordinates": {
+                    "lat": 54.991384,
+                    "lng": 14.355841
+                },
+                "country": "United States"
+            },
+            "macAddress": "5e:0:af:4:76:1e",
+            "university": "University of Notre Dame",
+            "bank": {
+                "cardExpire": "02/28",
+                "cardNumber": "8134274630822627",
+                "cardType": "Maestro",
+                "currency": "CAD",
+                "iban": "GDFJ97OX486QKAHP1RY8J38L"
+            },
+            "company": {
+                "department": "Legal",
+                "name": "Auer, Hettinger and Bradtke",
+                "title": "Engineer",
+                "address": {
+                    "address": "767 Maple Street",
+                    "city": "Austin",
+                    "state": "Iowa",
+                    "stateCode": "IA",
+                    "postalCode": "69431",
+                    "coordinates": {
+                        "lat": -68.641974,
+                        "lng": -147.141407
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "574-118",
+            "ssn": "889-739-601",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 19,
+            "firstName": "Abigail",
+            "lastName": "Rivera",
+            "maidenName": "",
+            "age": 28,
+            "gender": "female",
+            "email": "abigail.rivera@x.dummyjson.com",
+            "phone": "+91 228-363-7806",
+            "username": "abigailr",
+            "password": "abigailrpass",
+            "birthDate": "1996-10-11",
+            "image": "https://dummyjson.com/icon/abigailr/128",
+            "bloodGroup": "B+",
+            "height": 186.39,
+            "weight": 74.61,
+            "eyeColor": "Violet",
+            "hair": {
+                "color": "Blue",
+                "type": "Kinky"
+            },
+            "ip": "19.183.240.94",
+            "address": {
+                "address": "996 Oak Street",
+                "city": "Chicago",
+                "state": "New Mexico",
+                "stateCode": "NM",
+                "postalCode": "11407",
+                "coordinates": {
+                    "lat": 44.321308,
+                    "lng": -3.723903
+                },
+                "country": "United States"
+            },
+            "macAddress": "1d:a6:58:2a:e5:e4",
+            "university": "California Institute of Technology (Caltech)",
+            "bank": {
+                "cardExpire": "02/28",
+                "cardNumber": "4832361886407551",
+                "cardType": "RuPay",
+                "currency": "BRL",
+                "iban": "O02LHDNNFCVSM6D4H81DIQHE"
+            },
+            "company": {
+                "department": "Human Resources",
+                "name": "Prohaska - Thiel",
+                "title": "Business Analyst",
+                "address": {
+                    "address": "1402 Adams Street",
+                    "city": "Austin",
+                    "state": "Wisconsin",
+                    "stateCode": "WI",
+                    "postalCode": "51456",
+                    "coordinates": {
+                        "lat": 25.672938,
+                        "lng": -76.54967
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "173-637",
+            "ssn": "655-823-929",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/97.0.1072.76 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        }, 
+        {
+            "id": 95,
+            "firstName": "Miles",
+            "lastName": "Stevenson",
+            "maidenName": "",
+            "age": 31,
+            "gender": "male",
+            "email": "miles.stevenson@x.dummyjson.com",
+            "phone": "+49 708-659-4394",
+            "username": "miless",
+            "password": "milesspass",
+            "birthDate": "1993-3-1",
+            "image": "https://dummyjson.com/icon/miless/128",
+            "bloodGroup": "AB+",
+            "height": 151.88,
+            "weight": 97.67,
+            "eyeColor": "Gray",
+            "hair": {
+                "color": "White",
+                "type": "Straight"
+            },
+            "ip": "205.69.48.134",
+            "address": {
+                "address": "1778 Tenth Street",
+                "city": "Charlotte",
+                "state": "Montana",
+                "stateCode": "MT",
+                "postalCode": "29192",
+                "coordinates": {
+                    "lat": 87.914882,
+                    "lng": 55.932358
+                },
+                "country": "United States"
+            },
+            "macAddress": "ea:9f:90:df:f0:43",
+            "university": "Wake Forest University",
+            "bank": {
+                "cardExpire": "02/25",
+                "cardNumber": "2496284584728933",
+                "cardType": "RuPay",
+                "currency": "INR",
+                "iban": "9XGI4BTZ8NZSHBDCUQE4K4KB"
+            },
+            "company": {
+                "department": "Marketing",
+                "name": "Hudson, Labadie and Greenfelder",
+                "title": "Developer",
+                "address": {
+                    "address": "1686 Pine Street",
+                    "city": "Phoenix",
+                    "state": "Alabama",
+                    "stateCode": "AL",
+                    "postalCode": "54878",
+                    "coordinates": {
+                        "lat": -18.555482,
+                        "lng": 82.135991
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "732-553",
+            "ssn": "799-459-107",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/97.0.1072.76 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 156,
+            "firstName": "Mila",
+            "lastName": "Hernandez",
+            "maidenName": "Mitchell",
+            "age": 33,
+            "gender": "female",
+            "email": "mila.hernandez@x.dummyjson.com",
+            "phone": "+49 893-855-2896",
+            "username": "milam",
+            "password": "milampass",
+            "birthDate": "1991-8-18",
+            "image": "https://dummyjson.com/icon/milam/128",
+            "bloodGroup": "B-",
+            "height": 174.13,
+            "weight": 80.97,
+            "eyeColor": "Hazel",
+            "hair": {
+                "color": "Brown",
+                "type": "Kinky"
+            },
+            "ip": "109.219.231.82",
+            "address": {
+                "address": "1454 Oak Street",
+                "city": "Seattle",
+                "state": "New Mexico",
+                "stateCode": "NM",
+                "postalCode": "46438",
+                "coordinates": {
+                    "lat": 89.661297,
+                    "lng": 163.24939
+                },
+                "country": "United States"
+            },
+            "macAddress": "69:8b:7e:5f:44:93",
+            "university": "University of Virginia",
+            "bank": {
+                "cardExpire": "03/28",
+                "cardNumber": "6768824763441600",
+                "cardType": "Carte Bancaire",
+                "currency": "GBP",
+                "iban": "H26UXIF2ZXUQM9261V4Y98DW"
+            },
+            "company": {
+                "department": "Marketing",
+                "name": "Wisoky - Rowe",
+                "title": "Software Architect",
+                "address": {
+                    "address": "1281 Pine Street",
+                    "city": "Austin",
+                    "state": "Rhode Island",
+                    "stateCode": "RI",
+                    "postalCode": "66784",
+                    "coordinates": {
+                        "lat": 53.726642,
+                        "lng": 102.912699
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "708-862",
+            "ssn": "549-233-319",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        }, 
+        {
+            "id": 148,
+            "firstName": "Aurora",
+            "lastName": "Barnes",
+            "maidenName": "Gomez",
+            "age": 29,
+            "gender": "female",
+            "email": "aurora.barnes@x.dummyjson.com",
+            "phone": "+91 403-842-9683",
+            "username": "aurorag",
+            "password": "auroragpass",
+            "birthDate": "1995-12-15",
+            "image": "https://dummyjson.com/icon/aurorag/128",
+            "bloodGroup": "B+",
+            "height": 185.79,
+            "weight": 53.66,
+            "eyeColor": "Green",
+            "hair": {
+                "color": "Red",
+                "type": "Curly"
+            },
+            "ip": "204.17.198.20",
+            "address": {
+                "address": "1184 Adams Street",
+                "city": "New York",
+                "state": "Idaho",
+                "stateCode": "ID",
+                "postalCode": "19201",
+                "coordinates": {
+                    "lat": -20.67407,
+                    "lng": 107.281052
+                },
+                "country": "United States"
+            },
+            "macAddress": "8c:49:78:e2:70:b2",
+            "university": "Georgetown University",
+            "bank": {
+                "cardExpire": "05/29",
+                "cardNumber": "5711570153778161",
+                "cardType": "JCB",
+                "currency": "EUR",
+                "iban": "UJ7Q5UKAUR8FVDURX944IHXN"
+            },
+            "company": {
+                "department": "Sales",
+                "name": "Cassin Group",
+                "title": "Chief Financial Officer",
+                "address": {
+                    "address": "478 Ninth Street",
+                    "city": "Phoenix",
+                    "state": "Connecticut",
+                    "stateCode": "CT",
+                    "postalCode": "39433",
+                    "coordinates": {
+                        "lat": -19.046529,
+                        "lng": 48.682257
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "470-547",
+            "ssn": "310-708-861",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/97.0.1072.76 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        }, 
+        {
+            "id": 124,
+            "firstName": "Noah",
+            "lastName": "Lewis",
+            "maidenName": "",
+            "age": 39,
+            "gender": "male",
+            "email": "noah.lewis@x.dummyjson.com",
+            "phone": "+61 396-867-4229",
+            "username": "noahl",
+            "password": "noahlpass",
+            "birthDate": "1985-6-9",
+            "image": "https://dummyjson.com/icon/noahl/128",
+            "bloodGroup": "AB-",
+            "height": 168.71,
+            "weight": 86.15,
+            "eyeColor": "Green",
+            "hair": {
+                "color": "Brown",
+                "type": "Curly"
+            },
+            "ip": "210.106.253.177",
+            "address": {
+                "address": "41 Fifth Street",
+                "city": "Denver",
+                "state": "Alabama",
+                "stateCode": "AL",
+                "postalCode": "42655",
+                "coordinates": {
+                    "lat": 62.7964,
+                    "lng": -10.481867
+                },
+                "country": "United States"
+            },
+            "macAddress": "e3:f5:6d:86:ed:bd",
+            "university": "Yale University",
+            "bank": {
+                "cardExpire": "04/29",
+                "cardNumber": "7516988588241862",
+                "cardType": "Mir",
+                "currency": "TRY",
+                "iban": "LL758F4YIK259YO0X8YOSM1V"
+            },
+            "company": {
+                "department": "Research and Development",
+                "name": "Satterfield, Shields and Littel",
+                "title": "Project Manager",
+                "address": {
+                    "address": "596 Third Street",
+                    "city": "Seattle",
+                    "state": "Minnesota",
+                    "stateCode": "MN",
+                    "postalCode": "30859",
+                    "coordinates": {
+                        "lat": -9.449962,
+                        "lng": 124.358321
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "898-556",
+            "ssn": "711-488-725",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 206,
+            "firstName": "Elena",
+            "lastName": "Baker",
+            "maidenName": "",
+            "age": 34,
+            "gender": "female",
+            "email": "elena.baker@x.dummyjson.com",
+            "phone": "+49 978-346-6960",
+            "username": "elenab",
+            "password": "elenabpass",
+            "birthDate": "1990-3-16",
+            "image": "https://dummyjson.com/icon/elenab/128",
+            "bloodGroup": "O+",
+            "height": 150.62,
+            "weight": 95.55,
+            "eyeColor": "Brown",
+            "hair": {
+                "color": "Brown",
+                "type": "Straight"
+            },
+            "ip": "85.35.8.29",
+            "address": {
+                "address": "117 Maple Street",
+                "city": "San Francisco",
+                "state": "Tennessee",
+                "stateCode": "TN",
+                "postalCode": "40535",
+                "coordinates": {
+                    "lat": 30.069731,
+                    "lng": -118.879243
+                },
+                "country": "United States"
+            },
+            "macAddress": "83:75:b2:b6:ca:8b",
+            "university": "Tufts University",
+            "bank": {
+                "cardExpire": "01/28",
+                "cardNumber": "8424167615739668",
+                "cardType": "BC Card",
+                "currency": "BRL",
+                "iban": "4FSM02FCNNK3BNOI2SDHH91Z"
+            },
+            "company": {
+                "department": "Engineering",
+                "name": "Heller LLC",
+                "title": "Project Manager",
+                "address": {
+                    "address": "139 Jefferson Street",
+                    "city": "San Antonio",
+                    "state": "Idaho",
+                    "stateCode": "ID",
+                    "postalCode": "50546",
+                    "coordinates": {
+                        "lat": 1.356153,
+                        "lng": 175.897893
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "509-840",
+            "ssn": "640-201-673",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 183,
+            "firstName": "Cameron",
+            "lastName": "Perez",
+            "maidenName": "",
+            "age": 33,
+            "gender": "male",
+            "email": "cameron.perez@x.dummyjson.com",
+            "phone": "+91 275-868-7103",
+            "username": "cameronp",
+            "password": "cameronppass",
+            "birthDate": "1991-9-2",
+            "image": "https://dummyjson.com/icon/cameronp/128",
+            "bloodGroup": "B-",
+            "height": 153.92,
+            "weight": 86.88,
+            "eyeColor": "Hazel",
+            "hair": {
+                "color": "Blonde",
+                "type": "Curly"
+            },
+            "ip": "124.76.78.240",
+            "address": {
+                "address": "1179 Second Street",
+                "city": "San Jose",
+                "state": "Georgia",
+                "stateCode": "GA",
+                "postalCode": "51464",
+                "coordinates": {
+                    "lat": 46.602121,
+                    "lng": 27.216432
+                },
+                "country": "United States"
+            },
+            "macAddress": "5f:fb:b6:26:7c:7c",
+            "university": "Ohio State University",
+            "bank": {
+                "cardExpire": "02/26",
+                "cardNumber": "1493621436986299",
+                "cardType": "Discover",
+                "currency": "AUD",
+                "iban": "8IKTQ2XGEJF0SEYUTU1MEKC1"
+            },
+            "company": {
+                "department": "Support",
+                "name": "Sauer, Ernser and Gusikowski",
+                "title": "Software Architect",
+                "address": {
+                    "address": "1798 Maple Street",
+                    "city": "Jacksonville",
+                    "state": "Alabama",
+                    "stateCode": "AL",
+                    "postalCode": "23208",
+                    "coordinates": {
+                        "lat": -65.533177,
+                        "lng": -87.819631
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "990-995",
+            "ssn": "618-189-921",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 136,
+            "firstName": "Madison",
+            "lastName": "Stewart",
+            "maidenName": "Kelly",
+            "age": 36,
+            "gender": "female",
+            "email": "madison.stewart@x.dummyjson.com",
+            "phone": "+61 455-829-5048",
+            "username": "madisonk",
+            "password": "madisonkpass",
+            "birthDate": "1988-5-15",
+            "image": "https://dummyjson.com/icon/madisonk/128",
+            "bloodGroup": "B-",
+            "height": 199.81,
+            "weight": 76.36,
+            "eyeColor": "Blue",
+            "hair": {
+                "color": "Brown",
+                "type": "Kinky"
+            },
+            "ip": "110.144.81.89",
+            "address": {
+                "address": "823 Sixth Street",
+                "city": "Indianapolis",
+                "state": "Arkansas",
+                "stateCode": "AR",
+                "postalCode": "66305",
+                "coordinates": {
+                    "lat": -26.509663,
+                    "lng": -127.744698
+                },
+                "country": "United States"
+            },
+            "macAddress": "4e:15:99:a0:22:33",
+            "university": "Northwestern University",
+            "bank": {
+                "cardExpire": "03/26",
+                "cardNumber": "2791153884967760",
+                "cardType": "American Express",
+                "currency": "CAD",
+                "iban": "UTK199ACFANYLGO22JFAY696"
+            },
+            "company": {
+                "department": "Training",
+                "name": "Schowalter Group",
+                "title": "Data Scientist",
+                "address": {
+                    "address": "344 Main Street",
+                    "city": "Washington",
+                    "state": "Colorado",
+                    "stateCode": "CO",
+                    "postalCode": "64474",
+                    "coordinates": {
+                        "lat": -33.940327,
+                        "lng": -144.800578
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "246-581",
+            "ssn": "223-424-188",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 12,
+            "firstName": "Mia",
+            "lastName": "Rodriguez",
+            "maidenName": "",
+            "age": 24,
+            "gender": "female",
+            "email": "mia.rodriguez@x.dummyjson.com",
+            "phone": "+49 989-461-8403",
+            "username": "miar",
+            "password": "miarpass",
+            "birthDate": "2000-8-4",
+            "image": "https://dummyjson.com/icon/miar/128",
+            "bloodGroup": "O-",
+            "height": 188.08,
+            "weight": 56.03,
+            "eyeColor": "Blue",
+            "hair": {
+                "color": "Purple",
+                "type": "Wavy"
+            },
+            "ip": "11.72.253.90",
+            "address": {
+                "address": "1627 Sixth Street",
+                "city": "Jacksonville",
+                "state": "West Virginia",
+                "stateCode": "WV",
+                "postalCode": "41810",
+                "coordinates": {
+                    "lat": 24.857497,
+                    "lng": -34.865429
+                },
+                "country": "United States"
+            },
+            "macAddress": "53:d7:a4:6:1e:58",
+            "university": "William & Mary",
+            "bank": {
+                "cardExpire": "05/26",
+                "cardNumber": "1539872303456158",
+                "cardType": "Carte Bancaire",
+                "currency": "CAD",
+                "iban": "EBMD95RLK8B82ZAZNXBJ09V5"
+            },
+            "company": {
+                "department": "Accounting",
+                "name": "Miller, Schowalter and Wisozk",
+                "title": "Business Analyst",
+                "address": {
+                    "address": "1039 Washington Street",
+                    "city": "Philadelphia",
+                    "state": "New Jersey",
+                    "stateCode": "NJ",
+                    "postalCode": "57518",
+                    "coordinates": {
+                        "lat": 85.455933,
+                        "lng": 164.246103
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "754-660",
+            "ssn": "749-524-124",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "moderator"
+        },
+        {
+            "id": 143,
+            "firstName": "Grayson",
+            "lastName": "Coleman",
+            "maidenName": "",
+            "age": 30,
+            "gender": "male",
+            "email": "grayson.coleman@x.dummyjson.com",
+            "phone": "+61 238-607-2286",
+            "username": "graysonc",
+            "password": "graysoncpass",
+            "birthDate": "1994-12-15",
+            "image": "https://dummyjson.com/icon/graysonc/128",
+            "bloodGroup": "O+",
+            "height": 180.01,
+            "weight": 69.94,
+            "eyeColor": "Hazel",
+            "hair": {
+                "color": "Gray",
+                "type": "Straight"
+            },
+            "ip": "62.75.54.134",
+            "address": {
+                "address": "328 Fifth Street",
+                "city": "San Francisco",
+                "state": "Illinois",
+                "stateCode": "IL",
+                "postalCode": "82802",
+                "coordinates": {
+                    "lat": 45.278241,
+                    "lng": -118.657493
+                },
+                "country": "United States"
+            },
+            "macAddress": "eb:ab:3d:6b:ec:9",
+            "university": "Purdue University",
+            "bank": {
+                "cardExpire": "02/28",
+                "cardNumber": "4329547160269723",
+                "cardType": "RuPay",
+                "currency": "TRY",
+                "iban": "4FZKPMNZT0ROZMSEQRUC4DJM"
+            },
+            "company": {
+                "department": "Research and Development",
+                "name": "Kling Inc",
+                "title": "Human Resources Manager",
+                "address": {
+                    "address": "100 Washington Street",
+                    "city": "Washington",
+                    "state": "California",
+                    "stateCode": "CA",
+                    "postalCode": "22416",
+                    "coordinates": {
+                        "lat": -80.746833,
+                        "lng": -107.536493
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "445-246",
+            "ssn": "164-688-348",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        },
+        {
+            "id": 97,
+            "firstName": "Oscar",
+            "lastName": "Powers",
+            "maidenName": "",
+            "age": 33,
+            "gender": "male",
+            "email": "oscar.powers@x.dummyjson.com",
+            "phone": "+61 929-572-1408",
+            "username": "oscarp",
+            "password": "oscarppass",
+            "birthDate": "1991-9-7",
+            "image": "https://dummyjson.com/icon/oscarp/128",
+            "bloodGroup": "O+",
+            "height": 169.03,
+            "weight": 62.55,
+            "eyeColor": "Violet",
+            "hair": {
+                "color": "Green",
+                "type": "Wavy"
+            },
+            "ip": "216.204.186.222",
+            "address": {
+                "address": "1948 Jefferson Street",
+                "city": "Charlotte",
+                "state": "Vermont",
+                "stateCode": "VT",
+                "postalCode": "12263",
+                "coordinates": {
+                    "lat": 52.294653,
+                    "lng": -70.69936
+                },
+                "country": "United States"
+            },
+            "macAddress": "79:d9:1b:19:e2:73",
+            "university": "University of Virginia",
+            "bank": {
+                "cardExpire": "01/25",
+                "cardNumber": "1802378580921273",
+                "cardType": "Maestro",
+                "currency": "PKR",
+                "iban": "5TZV7Q0QZFZFG8FBITVU5QN9"
+            },
+            "company": {
+                "department": "Legal",
+                "name": "Luettgen and Sons",
+                "title": "Support Specialist",
+                "address": {
+                    "address": "1127 Oak Street",
+                    "city": "Chicago",
+                    "state": "Alabama",
+                    "stateCode": "AL",
+                    "postalCode": "37894",
+                    "coordinates": {
+                        "lat": 28.080301,
+                        "lng": -6.017825
+                    },
+                    "country": "United States"
+                }
+            },
+            "ein": "325-379",
+            "ssn": "856-795-126",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36",
+            "crypto": {
+                "coin": "Bitcoin",
+                "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
+                "network": "Ethereum (ERC20)"
+            },
+            "role": "user"
+        }
+    ]
+}
