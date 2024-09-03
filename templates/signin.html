@@ -1,21 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <br />
-<h1>{% block title %}Inscription{% endblock %}</h1>
+<h1>{% block title %}Connexion{% endblock %}</h1>
 <form method="POST">
     {{ form.hidden_tag() }}
 
-    {{ form.username.label(class='form-label') }}
-    {{ form.username(class='form-control') }}
-    <br />
     {{ form.email.label(class='form-label') }}
     {{ form.email(class='form-control') }}
     <br />
     {{ form.password.label(class='form-label') }}
     {{ form.password(class='form-control') }}
-    <br />
-    {{ form.confirm.label(class='form-label') }}
-    {{ form.confirm(class='form-control') }}
     <br />
     {{ form.submit(class='btn btn-secondary') }}
 </form>

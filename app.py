@@ -55,7 +55,7 @@ class Post(db.Model):
 
 class EditUserForm(FlaskForm):
     username = StringField("Votre pseudo", validators=[InputRequired()])
-    email = StringField("Votre email", validators=[Email()])
+    email = StringField("Votre email", validators=[InputRequired(), Email()])
     submit = SubmitField("Confirmer")
 
 
@@ -74,7 +74,7 @@ class SignUpForm(EditUserForm):
 
 
 class SignInForm(FlaskForm):
-    email = StringField("Votre email", validators=[Email()])
+    email = StringField("Votre email", validators=[InputRequired(), Email()])
     password = PasswordField('Votre mot de passe',
                              validators=[InputRequired()])
     submit = SubmitField("Se connecter")
@@ -111,16 +111,19 @@ def add_user():
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     form = SignInForm()
-    return render_template('signin.html', form=form)
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None:
+            passed = user.verify_password(form.password.data)
+    return render_template('signin.html',form=form)
 
 @app.route('/user/<int:user_id>/edit', methods=('GET', 'POST'))
 def edit_user(user_id):
     user = User.query.get_or_404(user_id)
     form = EditUserForm()
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-
+    if form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
         user.username = username
         user.email = email
         db.session.commit()
@@ -128,7 +131,6 @@ def edit_user(user_id):
     form.username.data = user.username
     form.email.data = user.email
     return render_template('edit_user.html', user=user, form=form)
-
 
 @app.route('/user/<int:user_id>/delete', methods=('POST',))
 def delete_user(user_id):
