@@ -38,9 +38,13 @@ class Post(db.Model):
     def __repr__(self):
         return f'<Post "{self.title}">'
 
-class SignUpForm(FlaskForm):
+class EditUserForm(FlaskForm):
     username = StringField("Votre pseudo", validators=[InputRequired()])
     email = StringField("Votre email", validators=[Email()])
+    submit = SubmitField("Confirmer")
+
+
+class SignUpForm(EditUserForm):
     password = PasswordField('Votre mot de passe', validators=[InputRequired()])
     submit = SubmitField("Créer votre compte")
 
@@ -60,6 +64,22 @@ def index():
 def users():
     users = User.query.all()
     return render_template('users.html', users=users)
+
+@app.route('/user/<int:user_id>/edit', methods=('GET', 'POST'))
+def edit_user(user_id):
+    user = User.query.get_or_404(user_id)
+    form = EditUserForm()
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+
+        user.username = username
+        user.email = email
+        db.session.commit()
+        return redirect(url_for('users'))
+    form.username.data = user.username
+    form.email.data = user.email
+    return render_template('edit_user.html', user=user, form=form)
 
 @app.route('/user/<int:user_id>/delete', methods=('POST',))
 def delete_user(user_id):
@@ -109,7 +129,7 @@ def create_post():
             db.session.add(post)
             db.session.commit()
             return redirect(url_for('index'))
-    return render_template('create.html')
+    return render_template('create_post.html')
 
 @app.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
 def edit_post(post_id):
@@ -127,7 +147,7 @@ def edit_post(post_id):
             db.session.commit()
             return redirect(url_for('post', post_id=post.id))
 
-    return render_template('edit.html', post=post)
+    return render_template('edit_post.html', post=post)
 
 @app.route('/post/<int:post_id>/delete', methods=('POST',))
 def delete_post(post_id):

@@ -7,7 +7,7 @@
 {% for user in users %}
     <tr>
         <td>{{user.id}}</td>
-        <td>{{ user.username }}</td>
+        <td><a href="{{ url_for('edit_user', user_id=user.id) }}">{{ user.username }}</a></td>
         <td>{{ user.email }}</td>
         <td>{{ user.created }}</td>
         <td style="text-align: right;">
