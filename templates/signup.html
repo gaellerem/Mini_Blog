@@ -1,31 +1,21 @@
 {% extends 'base.html' %}
-{% block title %}Inscription{% endblock %}
 {% block content %}
 <br />
-{%if username %}
-    <h1>User added !</h1>
-{% else %}
-    <form method="POST">
-        {{ form.hidden_tag() }}
+<h1>{% block title %}Inscription{% endblock %}</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
 
-        {{ form.username.label(class='form-label') }}
-        {{ form.username(class='form-control') }}
-        <br />
-        {{ form.email.label(class='form-label') }}
-        {{ form.email(class='form-control') }}
-        <br />
-        {{ form.password.label(class='form-label') }}
-        {{ form.password(class='form-control') }}
-        <br />
-        {{ form.submit(class='btn btn-secondary') }}
-    </form>
-    <br /><br /><br />
-{% endif %}
-<table class="table table-hover table-bordered table-striped">
-{% for our_user in our_users %}
-    <tr>
-        <td>{{our_user.id}}. {{ our_user.username }} - {{ our_user.email }}</td>
-    </tr>
-{% endfor %}
-</table>
+    {{ form.username.label(class='form-label') }}
+    {{ form.username(class='form-control') }}
+    <br />
+    {{ form.email.label(class='form-label') }}
+    {{ form.email(class='form-control') }}
+    <br />
+    {{ form.password.label(class='form-label') }}
+    {{ form.password(class='form-control') }}
+    <br />
+    {{ form.submit(class='btn btn-secondary') }}
+</form>
+<br /><br /><br />
+
 {% endblock %}

@@ -53,13 +53,21 @@ def index():
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
-@app.route('/user/<string:name>')
-def user(name):
-    return render_template('user.html', name=name)
+@app.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
+
+@app.route('/user/<int:user_id>/delete', methods=('POST',))
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User was successfully deleted!', 'success')
+    return redirect(url_for('users'))
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signup():
-    username = None
     form = SignUpForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -73,12 +81,11 @@ def signup():
             )
             db.session.add(user)
             db.session.commit()
-        username = form.username.data
         form.username.data = ''
         form.email.data = ''
         form.password.data = ''
-    our_users = User.query.all()
-    return render_template('signup.html', username=username, form=form, our_users=our_users)
+        return redirect(url_for('users'))
+    return render_template('signup.html', form=form)
 
 
 @app.route('/post/<int:post_id>')
@@ -87,8 +94,8 @@ def post(post_id):
     return render_template('post.html', post=post)
 
 
-@app.route('/posts/create', methods=('GET', 'POST'))
-def create():
+@app.route('/post/create', methods=('GET', 'POST'))
+def create_post():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
@@ -102,7 +109,7 @@ def create():
     return render_template('create.html')
 
 @app.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
-def edit(post_id):
+def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
 
     if request.method == 'POST':
@@ -120,7 +127,7 @@ def edit(post_id):
     return render_template('edit.html', post=post)
 
 @app.route('/post/<int:post_id>/delete', methods=('POST',))
-def delete(post_id):
+def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
