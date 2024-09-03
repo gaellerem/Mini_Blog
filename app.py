@@ -1,4 +1,3 @@
-import bcrypt
 from datetime import datetime
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -7,7 +6,7 @@ from flask_wtf import FlaskForm
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import Email, InputRequired
+from wtforms.validators import Email, InputRequired, EqualTo, Length
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -25,7 +24,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(80), nullable=False)
     created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    posts = db.relationship('Post', backref='author', lazy=True, cascade="all, delete-orphan")
+    posts = db.relationship('Post', backref='author',
+                            lazy=True, cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -60,16 +60,24 @@ class EditUserForm(FlaskForm):
 
 
 class SignUpForm(EditUserForm):
-    password = PasswordField('Votre mot de passe',
-                             validators=[InputRequired()])
+    password = PasswordField(
+        'Votre mot de passe',
+        validators=[
+            InputRequired(), 
+            EqualTo('confirm', message="Les mots de passe doivent correspondre")
+    ])
+    confirm = PasswordField(
+        'Confirmer le mot de passe',
+        validators=[InputRequired()]
+    )
     submit = SubmitField("Créer votre compte")
 
 
 class SignInForm(FlaskForm):
-    username = StringField("Votre pseudo", validators=[InputRequired()])
+    email = StringField("Votre email", validators=[Email()])
     password = PasswordField('Votre mot de passe',
                              validators=[InputRequired()])
-    submit = SubmitField("Créer votre compte")
+    submit = SubmitField("Se connecter")
 
 
 @app.route('/')
@@ -83,6 +91,27 @@ def users():
     users = User.query.all()
     return render_template('users.html', users=users)
 
+@app.route('/signup', methods=('GET', 'POST'))
+def add_user():
+    form = SignUpForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            user = User(
+                username=form.username.data,
+                email=form.email.data,
+                password=form.password.data,
+                role='user'
+            )
+            db.session.add(user)
+            db.session.commit()
+        return redirect(url_for('users'))
+    return render_template('signup.html', form=form)
+
+@app.route('/login', methods=('GET', 'POST'))
+def login():
+    form = SignInForm()
+    return render_template('signin.html', form=form)
 
 @app.route('/user/<int:user_id>/edit', methods=('GET', 'POST'))
 def edit_user(user_id):
@@ -108,28 +137,6 @@ def delete_user(user_id):
     db.session.commit()
     flash('User was successfully deleted!', 'success')
     return redirect(url_for('users'))
-
-
-@app.route('/signup', methods=('GET', 'POST'))
-def signup():
-    form = SignUpForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user is None:
-            password = form.password.data
-            user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password=password,
-                role='user'
-            )
-            db.session.add(user)
-            db.session.commit()
-        form.username.data = ''
-        form.email.data = ''
-        form.password.data = ''
-        return redirect(url_for('users'))
-    return render_template('signup.html', form=form)
 
 
 @app.route('/post/<int:post_id>')
