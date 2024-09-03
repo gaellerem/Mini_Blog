@@ -1,36 +1,39 @@
 from datetime import datetime
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from werkzeug.exceptions import abort
 
+db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'database.db')
+app.config["SECRET_KEY"] = 'cgLN0zPgBqcN1xNjnKfma7oM2ZLkPd5D'
+db.init_app(app)
 
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
 
-def get_post(post_id):
-    conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?', (post_id,)).fetchone()
-    conn.close()
-    if post is None:
-        abort(404)
-    return post
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    role = db.Column(db.String(80), nullable=False)
+    posts = db.relationship('Post', backref='author', lazy=True)
 
-def get_post_with_username(post_id):
-    conn = get_db_connection()
-    try:
-        post = conn.execute('''
-            SELECT posts.title, posts.content, posts.created, users.username 
-            FROM posts 
-            INNER JOIN users ON users.id = posts.userId 
-            WHERE posts.id = ?
-        ''', (post_id,)).fetchone()
-    finally:
-        conn.close()
+    def __repr__(self):
+        return f'<User "{self.username}">'
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<Post "{self.title}">'
 
     if post is None:
         abort(404)
@@ -43,9 +46,7 @@ app.config["SECRET_KEY"] = 'cgLN0zPgBqcN1xNjnKfma7oM2ZLkPd5D'
 
 @app.route('/')
 def index():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
-    conn.close()
+    posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
 @app.route('/user/<string:name>')
@@ -55,7 +56,7 @@ def user(name):
 
 @app.route('/post/<int:post_id>')
 def post(post_id):
-    post = get_post_with_username(post_id)
+    post = Post.query.get_or_404(post_id)
     return render_template('post.html', post=post)
 
 
@@ -68,18 +69,15 @@ def create():
         if not title:
             flash('Title is required!')
         else:
-            conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content, created, userId) VALUES (?, ?, ?, ?)',
-                         (title, content, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 1))
-            conn.commit()
-            conn.close()
+            post = Post(title=title, content=content, user_id=1)  # Remplacez 1 par l'ID de l'utilisateur actuel
+            db.session.add(post)
+            db.session.commit()
             return redirect(url_for('index'))
-
     return render_template('create.html')
 
-@app.route('/post/<int:id>/edit', methods=('GET', 'POST'))
-def edit(id):
-    post = get_post(id)
+@app.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
+def edit(post_id):
+    post = Post.query.get_or_404(post_id)
 
     if request.method == 'POST':
         title = request.form['title']
@@ -88,24 +86,19 @@ def edit(id):
         if not title:
             flash('Title is required!')
         else:
-            conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?'
-                         ' WHERE id = ?',
-                         (title, content, id))
-            conn.commit()
-            conn.close()
-            return redirect(url_for('index'))
+            post.title = title
+            post.content = content
+            db.session.commit()
+            return redirect(url_for('post', post_id=post.id))
 
     return render_template('edit.html', post=post)
 
-@app.route('/post/<int:id>/delete', methods=('POST',))
-def delete(id):
-    post = get_post(id)
-    conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
-    conn.commit()
-    conn.close()
-    flash('"{}" was successfully deleted!'.format(post['title']))
+@app.route('/post/<int:post_id>/delete', methods=('POST',))
+def delete(post_id):
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Post was successfully deleted!', 'success')
     return redirect(url_for('index'))
 
 @app.route('/admin')

@@ -9,13 +9,7 @@ def random_date(start, end):
         seconds=random.randint(0, int((end - start).total_seconds())),
     )
 
-connection = sqlite3.connect('database.db')
-
-with open('create_users_table.sql') as f:
-    connection.executescript(f.read())
-
-with open('create_posts_table.sql') as f:
-    connection.executescript(f.read())
+connection = sqlite3.connect('instance/database.db')
 
 cur = connection.cursor()
 
@@ -29,7 +23,7 @@ user_id_map = {}
 for user in users_data['users']:
     hashed_password = bcrypt.hashpw(
         user['password'].encode('utf-8'), bcrypt.gensalt())
-    cur.execute("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)",
+    cur.execute("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, ?)",
                 (user['username'], user['email'],
                  hashed_password, user['role'])
                 )
@@ -42,7 +36,7 @@ for post in posts_data['posts']:
     user_id = user_id_map.get(post['userId'])
     if user_id:
         created_date = random_date(start_date, end_date)
-        cur.execute("INSERT INTO posts (title, content, userId, created) VALUES (?, ?, ?, ?)",
+        cur.execute("INSERT INTO post (title, content, user_id, created) VALUES (?, ?, ?, ?)",
                     (post['title'], post['body'], user_id, created_date)
                     )
 
