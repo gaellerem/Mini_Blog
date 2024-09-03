@@ -7,7 +7,7 @@
             <h2>{{ post['title'] }}</h2>
         </a>
         <span class="badge badge-secondary">{{ post['created'] }}</span>
-        <a href="{{ url_for('edit', id=post['id']) }}">
+        <a href="{{ url_for('edit', post_id=post['id']) }}">
             <span class="badge badge-warning">Edit</span>
         </a>
         <hr>

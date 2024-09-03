@@ -1,11 +1,11 @@
+import bcrypt
 from datetime import datetime
-import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
-from werkzeug.exceptions import abort
+import os
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import Email, InputRequired, EqualTo
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -35,14 +35,18 @@ class Post(db.Model):
     def __repr__(self):
         return f'<Post "{self.title}">'
 
-    if post is None:
-        abort(404)
+class SignUpForm(FlaskForm):
+    username = StringField("Votre pseudo", validators=[InputRequired()])
+    email = StringField("Votre email", validators=[Email()])
+    password = PasswordField('Votre mot de passe', validators=[InputRequired()])
+    submit = SubmitField("Créer votre compte")
 
-    return post
 
+class SignInForm(FlaskForm):
+    username = StringField("Votre pseudo", validators=[InputRequired()])
+    password = PasswordField('Votre mot de passe', validators=[InputRequired()])
+    submit = SubmitField("Créer votre compte")
 
-app = Flask(__name__)
-app.config["SECRET_KEY"] = 'cgLN0zPgBqcN1xNjnKfma7oM2ZLkPd5D'
 
 @app.route('/')
 def index():
@@ -52,6 +56,29 @@ def index():
 @app.route('/user/<string:name>')
 def user(name):
     return render_template('user.html', name=name)
+
+@app.route('/signup', methods=('GET', 'POST'))
+def signup():
+    username = None
+    form = SignUpForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt())
+            user = User(
+                username=form.username.data, 
+                email=form.email.data,
+                password=password,
+                role='user'
+            )
+            db.session.add(user)
+            db.session.commit()
+        username = form.username.data
+        form.username.data = ''
+        form.email.data = ''
+        form.password.data = ''
+    our_users = User.query.all()
+    return render_template('signup.html', username=username, form=form, our_users=our_users)
 
 
 @app.route('/post/<int:post_id>')
@@ -65,7 +92,6 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        date = datetime.now()
         if not title:
             flash('Title is required!')
         else:
