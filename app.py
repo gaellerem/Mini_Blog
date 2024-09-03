@@ -2,16 +2,18 @@ import bcrypt
 from datetime import datetime
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_wtf import FlaskForm
 import os
 from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import Email, InputRequired, EqualTo
+from wtforms.validators import Email, InputRequired
 
 db = SQLAlchemy()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'database.db')
 app.config["SECRET_KEY"] = 'cgLN0zPgBqcN1xNjnKfma7oM2ZLkPd5D'
 db.init_app(app)
+migrate = Migrate(app, db)
 
 
 class User(db.Model):
@@ -20,6 +22,7 @@ class User(db.Model):
     email = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(80), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def __repr__(self):
