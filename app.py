@@ -5,8 +5,8 @@ from flask_migrate import Migrate
 from flask_wtf import FlaskForm
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import Email, InputRequired, EqualTo, Length
+from wtforms import StringField, SubmitField, PasswordField, TextAreaField
+from wtforms.validators import Email, InputRequired, EqualTo
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -79,6 +79,13 @@ class SignInForm(FlaskForm):
                              validators=[InputRequired()])
     submit = SubmitField("Se connecter")
 
+class PostForm(FlaskForm):
+    title = StringField("Titre", validators=[InputRequired()])
+    content = TextAreaField("Contenu", validators=[InputRequired()])
+    submit = SubmitField("Confirmer")
+
+class EditPostForm(PostForm):
+    delete = SubmitField("Supprimer")
 
 @app.route('/')
 def index():
@@ -146,40 +153,38 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', post=post)
 
-
 @app.route('/post/create', methods=('GET', 'POST'))
 def create_post():
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-        if not title:
-            flash('Title is required!')
-        else:
-            # Remplacez 1 par l'ID de l'utilisateur actuel
-            post = Post(title=title, content=content, user_id=1)
-            db.session.add(post)
-            db.session.commit()
-            return redirect(url_for('index'))
-    return render_template('create_post.html')
+    form = PostForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
+        # Remplacez 1 par l'ID de l'utilisateur actuel
+        post = Post(title=title, content=content, user_id=1)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('create_post.html', form=form)
 
 
 @app.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
 def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
-
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-
-        if not title:
-            flash('Title is required!')
+    form = EditPostForm()
+    if form.validate_on_submit():
+        if form.delete.data:
+            delete_post(post_id)
+            return redirect(url_for('index'))
         else:
+            title = form.title.data
+            content = form.content.data
             post.title = title
             post.content = content
             db.session.commit()
             return redirect(url_for('post', post_id=post.id))
-
-    return render_template('edit_post.html', post=post)
+    form.title.data = post.title
+    form.content.data = post.content
+    return render_template('edit_post.html', post=post, form=form)
 
 
 @app.route('/post/<int:post_id>/delete', methods=('POST',))
@@ -187,7 +192,6 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
-    flash('Post was successfully deleted!', 'success')
     return redirect(url_for('index'))
 
 

@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
-    <span class="badge badge-primary">{{ post['created'] }}</span>
-    <p>{{ post['content'] }}</p>
-    <p>{{ post['username']}} </p>
+<br/>
+<h2>{% block title %} {{ post.title }} {% endblock %}</h2>
+<span class="badge badge-light">{{ post.created.strftime("%d-%m-%Y %H:%M") }}</span>
+<br/><br/>
+<p>{{ post.content }}</p>
+<a href="{{ url_for('edit_post', post_id=post.id) }}">
+    <span class="badge badge-warning">Edit</span>
+</a>
 {% endblock %}
