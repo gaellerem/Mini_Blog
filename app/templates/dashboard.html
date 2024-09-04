@@ -12,9 +12,9 @@
             <strong>Email : </strong>{{ current_user.email }}<br />
             <strong>Membre depuis : </strong>{{ current_user.formatted_created }}<br />
         </p>
-        <a href="{{ url_for('edit_user') }}" class="btn btn-secondary btn-sm">Modifier</a>
-        <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Déconnexion</a>
-        <form action="{{ url_for('delete_user') }}" method="POST" style="display:inline;">
+        <a href="{{ url_for('users.edit_user') }}" class="btn btn-secondary btn-sm">Modifier</a>
+        <a href="{{ url_for('users.logout') }}" class="btn btn-secondary btn-sm">Déconnexion</a>
+        <form action="{{ url_for('users.delete_user') }}" method="POST" style="display:inline;">
             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
         </form>
     </div>
@@ -23,11 +23,11 @@
 <table class="table table-hover table-bordered table-striped">
     {% for post in posts %}
     <tr>
-        <td><a href="{{ url_for('post', post_id=post.id) }}" style="text-decoration: none;">{{ post.title
+        <td><a href="{{ url_for('posts.post', post_id=post.id) }}" style="text-decoration: none;">{{ post.title
                 }}</a></td>
         <td>{{ post.formatted_created }}</td>
     </tr>
     {% endfor %}
 </table>
-<a href="{{ url_for('create_post') }}" class="btn btn-secondary btn-sm">Créer un nouvel article</a>
+<a href="{{ url_for('posts.create_post') }}" class="btn btn-secondary btn-sm">Créer un nouvel article</a>
 {% endblock %}

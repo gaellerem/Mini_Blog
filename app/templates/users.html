@@ -9,11 +9,6 @@
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.formatted_created }}</td>
-        <td style="text-align: right;">
-            <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
-                <button type="submit" class="btn btn-outline-dark">X</button>
-            </form>
-        </td>
     </tr>
     {% endfor %}
 </table>
