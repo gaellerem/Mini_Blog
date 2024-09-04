@@ -50,6 +50,10 @@ class User(db.Model, UserMixin):
     def password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    @property
+    def formatted_created(self):
+        return self.created.strftime("%d-%m-%Y %H:%M")
+
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -63,6 +67,10 @@ class Post(db.Model):
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    @property
+    def formatted_created(self):
+        return self.created.strftime("%d-%m-%Y %H:%M")
 
     def __repr__(self):
         return f'<Post "{self.title}">'

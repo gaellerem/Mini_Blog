@@ -8,7 +8,7 @@
     <a href="{{ url_for('post', post_id=post['id']) }}" class="custom-link">
         <h2>{{ post.title }}</h2>
     </a>
-    <span class="badge badge-secondary">{{ post.created.strftime("%d-%m-%Y %H:%M") }}</span>
+    <span class="badge badge-secondary">{{ post.formatted_created }}</span>
     <a href="{{ url_for('edit_post', post_id=post['id']) }}">
         <span class="badge badge-warning">Edit</span>
     </a>

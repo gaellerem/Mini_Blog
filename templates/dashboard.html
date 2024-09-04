@@ -2,8 +2,18 @@
 {% block content %}
 
 <h1>{% block title %}Dashboard{% endblock %}</h1>
-<p>Tu es connecté !</p>
-<a href="{{ url_for('logout') }}">
-    <button class="btn btn-danger">Déconnexion</button>
-</a>
+<div class="card">
+    <div class="card-header">
+        {{ current_user.username }}
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+          <strong>ID : </strong>{{ current_user.id }}<br/>
+            <strong>Email : </strong>{{ current_user.email }}<br/>
+            <strong>Membre depuis : </strong>{{ current_user.formatted_created }}<br/>
+        </p>
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Déconnexion</a>
+    </div>
+</div>
+
 {% endblock %}
