@@ -5,11 +5,9 @@ from flask_login import (
     UserMixin, login_user, LoginManager,
     login_required, logout_user, current_user)
 from flask_migrate import Migrate
-from flask_wtf import FlaskForm
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import StringField, SubmitField, PasswordField, TextAreaField
-from wtforms.validators import Email, InputRequired, EqualTo
+from webforms import EditUserForm, LogInForm, SignUpForm, PostForm
 
 db = SQLAlchemy()
 
@@ -75,43 +73,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return f'<Post "{self.title}">'
-
-
-class EditUserForm(FlaskForm):
-    username = StringField("Votre pseudo", validators=[InputRequired()])
-    email = StringField("Votre email", validators=[InputRequired(), Email()])
-    submit = SubmitField("Confirmer")
-
-
-class SignUpForm(EditUserForm):
-    password = PasswordField(
-        'Votre mot de passe',
-        validators=[
-            InputRequired(),
-            EqualTo('confirm', message="Les mots de passe doivent correspondre")
-        ])
-    confirm = PasswordField(
-        'Confirmer le mot de passe',
-        validators=[InputRequired()]
-    )
-    submit = SubmitField("Créer votre compte")
-
-
-class LogInForm(FlaskForm):
-    email = StringField("Votre email", validators=[InputRequired(), Email()])
-    password = PasswordField('Votre mot de passe',
-                             validators=[InputRequired()])
-    submit = SubmitField("Se connecter")
-
-
-class PostForm(FlaskForm):
-    title = StringField("Titre", validators=[InputRequired()])
-    content = TextAreaField("Contenu", validators=[InputRequired()])
-    submit = SubmitField("Confirmer")
-
-
-class EditPostForm(PostForm):
-    delete = SubmitField("Supprimer")
 
 
 @app.route('/')
