@@ -2,19 +2,18 @@
 
 {% block content %}
 <h1>{% block title %} Modifier "{{ post.title }}" {% endblock %}</h1>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
 
-<form method="POST">
-    {{ form.hidden_tag() }}
-
-    {{ form.title.label(class='form-label') }}
-    {{ form.title(class='form-control') }}
-    <br />
-    {{ form.content.label(class='form-label') }}
-    {{ form.content(class='form-control') }}
-    <br />
-    <hr>
-    {{ form.submit(class='btn btn-success') }}
-    {{ form.delete(class='btn btn-danger') }}
-</form>
-
+        {{ form.title.label(class='form-label') }}
+        {{ form.title(class='form-control') }}
+        <br />
+        {{ form.content.label(class='form-label') }}
+        {{ form.content(class='form-control') }}
+        <br />
+        <hr>
+        {{ form.submit(class='btn btn-success') }}
+    </form>
+</div>
 {% endblock %}

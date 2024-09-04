@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
-    UserMixin, login_user, LoginManager, 
+    UserMixin, login_user, LoginManager,
     login_required, logout_user, current_user)
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
@@ -26,6 +26,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 login_manager.login_message = "Veuillez vous connecter"
 login_manager.login_message_category = "warning"
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -115,7 +116,7 @@ class EditPostForm(PostForm):
 
 @app.route('/')
 def index():
-    posts = Post.query.order_by(Post.created)
+    posts = Post.query.order_by(Post.created.desc()).all()
     return render_template('index.html', posts=posts)
 
 
@@ -158,34 +159,37 @@ def login():
             flash("Identifiant inconnu", "danger")
     return render_template('login.html', form=form)
 
+
 @app.route('/logout', methods=('GET', 'POST'))
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/user/<int:user_id>/edit', methods=('GET', 'POST'))
-def edit_user(user_id):
-    user = User.query.get_or_404(user_id)
+
+@app.route('/user/edit', methods=('GET', 'POST'))
+@login_required
+def edit_user():
     form = EditUserForm()
     if form.validate_on_submit():
         username = form.username.data
         email = form.email.data
-        user.username = username
-        user.email = email
+        current_user.username = username
+        current_user.email = email
         db.session.commit()
-        return redirect(url_for('users'))
-    form.username.data = user.username
-    form.email.data = user.email
-    return render_template('edit_user.html', user=user, form=form)
+        return redirect(url_for('dashboard'))
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+    return render_template('edit_user.html', form=form)
 
 
-@app.route('/user/<int:user_id>/delete', methods=('POST',))
-def delete_user(user_id):
-    user = User.query.get_or_404(user_id)
+@app.route('/user/delete', methods=['POST'])
+@login_required
+def delete_user():
+    user = User.query.get_or_404(current_user.id)
     db.session.delete(user)
     db.session.commit()
-    flash('User was successfully deleted!', 'success')
+    flash('Profile was successfully deleted!', 'success')
     return redirect(url_for('users'))
 
 
@@ -201,8 +205,7 @@ def create_post():
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
-        # Remplacez 1 par l'ID de l'utilisateur actuel
-        post = Post(title=title, content=content, user_id=2)
+        post = Post(title=title, content=content, user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
@@ -210,37 +213,38 @@ def create_post():
 
 
 @app.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
+@login_required
 def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
-    form = EditPostForm()
+    form = PostForm()
     if form.validate_on_submit():
-        if form.delete.data:
-            delete_post(post_id)
-            return redirect(url_for('index'))
-        else:
-            title = form.title.data
-            content = form.content.data
-            post.title = title
-            post.content = content
-            db.session.commit()
-            return redirect(url_for('post', post_id=post.id))
+        title = form.title.data
+        content = form.content.data
+        post.title = title
+        post.content = content
+        db.session.commit()
+        return redirect(url_for('post', post_id=post.id))
     form.title.data = post.title
     form.content.data = post.content
     return render_template('edit_post.html', post=post, form=form)
 
 
-@app.route('/post/<int:post_id>/delete', methods=('POST',))
+@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
-    flash('Post was successfully deleted!', 'success')
+    flash("L'article a bien été supprimé !", 'success')
     return redirect(url_for('index'))
+
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    posts = current_user.posts
+    return render_template('dashboard.html', posts=posts)
+
 
 @app.route('/admin')
 def admin():

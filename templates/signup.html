@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>{% block title %}Inscription{% endblock %}</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
 
-    {{ form.username.label(class='form-label') }}
-    {{ form.username(class='form-control') }}
-    <br />
-    {{ form.email.label(class='form-label') }}
-    {{ form.email(class='form-control') }}
-    <br />
-    {{ form.password.label(class='form-label') }}
-    {{ form.password(class='form-control') }}
-    <br />
-    {{ form.confirm.label(class='form-label') }}
-    {{ form.confirm(class='form-control') }}
-    <br />
-    {{ form.submit(class='btn btn-secondary') }}
-</form>
+        {{ form.username.label(class='form-label') }}
+        {{ form.username(class='form-control') }}
+        <br />
+        {{ form.email.label(class='form-label') }}
+        {{ form.email(class='form-control') }}
+        <br />
+        {{ form.password.label(class='form-label') }}
+        {{ form.password(class='form-control') }}
+        <br />
+        {{ form.confirm.label(class='form-label') }}
+        {{ form.confirm(class='form-control') }}
+        <br />
+        {{ form.submit(class='btn btn-secondary') }}
+    </form>
+</div>
 {% endblock %}

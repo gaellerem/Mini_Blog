@@ -36,7 +36,7 @@
       <ul class="navbar-nav ml-auto">
       {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{url_for('logout')}}">Déconnexion</a>
+          <a class="nav-link" href="{{url_for('logout')}}">{{current_user.username}} - Déconnexion</a>
         </li>
       {% else %}
         <li class="nav-item">
