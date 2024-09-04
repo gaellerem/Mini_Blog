@@ -1,6 +1,9 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import (
+    UserMixin, login_user, LoginManager, 
+    login_required, logout_user, current_user)
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
 import os
@@ -9,21 +12,33 @@ from wtforms import StringField, SubmitField, PasswordField, TextAreaField
 from wtforms.validators import Email, InputRequired, EqualTo
 
 db = SQLAlchemy()
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
     os.path.join(app.instance_path, 'database.db')
 app.config["SECRET_KEY"] = 'cgLN0zPgBqcN1xNjnKfma7oM2ZLkPd5D'
+
 db.init_app(app)
 migrate = Migrate(app, db)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+login_manager.login_message = "Veuillez vous connecter"
+login_manager.login_message_category = "warning"
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(120), nullable=False)
+    username = db.Column(db.String(20), nullable=False, unique=True)
+    email = db.Column(db.String(120), nullable=False, unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(80), nullable=False)
-    created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    created = db.Column(db.DateTime, default=datetime.now, nullable=False)
     posts = db.relationship('Post', backref='author',
                             lazy=True, cascade="all, delete-orphan")
 
@@ -44,7 +59,7 @@ class User(db.Model):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created = db.Column(db.DateTime, nullable=False, default=datetime.now)
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -73,7 +88,7 @@ class SignUpForm(EditUserForm):
     submit = SubmitField("Créer votre compte")
 
 
-class SignInForm(FlaskForm):
+class LogInForm(FlaskForm):
     email = StringField("Votre email", validators=[InputRequired(), Email()])
     password = PasswordField('Votre mot de passe',
                              validators=[InputRequired()])
@@ -122,12 +137,24 @@ def add_user():
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
-    form = SignInForm()
+    form = LogInForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user is not None:
-            passed = user.verify_password(form.password.data)
-    return render_template('signin.html',form=form)
+        if user:
+            if user.verify_password(form.password.data):
+                login_user(user)
+                return redirect(url_for('dashboard'))
+            else:
+                flash("Mot de passe incorrect", 'danger')
+        else:
+            flash("Identifiant inconnu", "danger")
+    return render_template('login.html', form=form)
+
+@app.route('/logout', methods=('GET', 'POST'))
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/user/<int:user_id>/edit', methods=('GET', 'POST'))
 def edit_user(user_id):
@@ -202,6 +229,10 @@ def delete_post(post_id):
     flash('Post was successfully deleted!', 'success')
     return redirect(url_for('index'))
 
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
 
 @app.route('/admin')
 def admin():
