@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
@@ -63,9 +63,9 @@ class SignUpForm(EditUserForm):
     password = PasswordField(
         'Votre mot de passe',
         validators=[
-            InputRequired(), 
+            InputRequired(),
             EqualTo('confirm', message="Les mots de passe doivent correspondre")
-    ])
+        ])
     confirm = PasswordField(
         'Confirmer le mot de passe',
         validators=[InputRequired()]
@@ -79,17 +79,20 @@ class SignInForm(FlaskForm):
                              validators=[InputRequired()])
     submit = SubmitField("Se connecter")
 
+
 class PostForm(FlaskForm):
     title = StringField("Titre", validators=[InputRequired()])
     content = TextAreaField("Contenu", validators=[InputRequired()])
     submit = SubmitField("Confirmer")
 
+
 class EditPostForm(PostForm):
     delete = SubmitField("Supprimer")
 
+
 @app.route('/')
 def index():
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.created)
     return render_template('index.html', posts=posts)
 
 
@@ -97,6 +100,7 @@ def index():
 def users():
     users = User.query.all()
     return render_template('users.html', users=users)
+
 
 @app.route('/signup', methods=('GET', 'POST'))
 def add_user():
@@ -114,6 +118,7 @@ def add_user():
             db.session.commit()
         return redirect(url_for('users'))
     return render_template('signup.html', form=form)
+
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
@@ -139,6 +144,7 @@ def edit_user(user_id):
     form.email.data = user.email
     return render_template('edit_user.html', user=user, form=form)
 
+
 @app.route('/user/<int:user_id>/delete', methods=('POST',))
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -153,6 +159,7 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', post=post)
 
+
 @app.route('/post/create', methods=('GET', 'POST'))
 def create_post():
     form = PostForm()
@@ -160,7 +167,7 @@ def create_post():
         title = form.title.data
         content = form.content.data
         # Remplacez 1 par l'ID de l'utilisateur actuel
-        post = Post(title=title, content=content, user_id=1)
+        post = Post(title=title, content=content, user_id=2)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
@@ -192,6 +199,7 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
+    flash('Post was successfully deleted!', 'success')
     return redirect(url_for('index'))
 
 

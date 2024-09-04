@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<br/>
 <h2>{% block title %} {{ post.title }} {% endblock %}</h2>
 <span class="badge badge-light">{{ post.created.strftime("%d-%m-%Y %H:%M") }}</span>
 <br/><br/>
