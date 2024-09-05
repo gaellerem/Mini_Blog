@@ -1,45 +1,41 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_required, current_user, logout_user, login_user
 from app.users import bp
-from app.extensions import db
+from app.extensions import db, csrf
 from app.models.user import User
 from app.webforms import SignUpForm, LogInForm, EditUserForm
 
 @bp.route('/')
 def index():
     users = User.query.all()
-    return render_template('users.html', users=users)
+    return render_template('users/index.html', users=users)
 
 
 @bp.route('/signup', methods=('GET', 'POST'))
-def add_user():
+def add():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
     form = SignUpForm()
     if form.validate_on_submit():
-        user_by_email = User.query.filter_by(email=form.email.data).first()
-        user_by_username = User.query.filter_by(username=form.username.data).first()
-        if user_by_email:
-            flash('Email déjà utilisé.', 'warning')
-        elif user_by_username:
-            flash('Nom d\'utilisateur déjà utilisé.', 'warning')
-        else:
-            user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password=form.password.data,
-                role='user'
-            )
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return redirect(url_for('users.dashboard'))
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=form.password.data,
+            role='user'
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for('users.dashboard'))
     return render_template('signup.html', form=form)
 
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
     form = LogInForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -61,25 +57,23 @@ def logout():
     return redirect(url_for('index'))
 
 
-@bp.route('/user/edit', methods=('GET', 'POST'))
+@bp.route('/edit', methods=('GET', 'POST'))
 @login_required
-def edit_user():
-    form = EditUserForm()
+def update():
+    form = EditUserForm(current_user)
     if form.validate_on_submit():
-        username = form.username.data
-        email = form.email.data
-        current_user.username = username
-        current_user.email = email
+        current_user.username = form.username.data
+        current_user.email = form.email.data
         db.session.commit()
         return redirect(url_for('users.dashboard'))
     form.username.data = current_user.username
     form.email.data = current_user.email
-    return render_template('edit_user.html', form=form)
+    return render_template('users/edit.html', form=form)
 
 
-@bp.route('/user/delete', methods=['POST'])
+@bp.route('/delete', methods=['POST', 'GET'])
 @login_required
-def delete_user():
+def delete():
     user = User.query.get_or_404(current_user.id)
     db.session.delete(user)
     db.session.commit()

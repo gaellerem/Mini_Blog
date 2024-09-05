@@ -6,8 +6,9 @@
 <p>{{ post.content }}</p>
 {% if post.user_id == current_user.id %}
 <hr>
-<a href="{{ url_for('posts.edit_post', post_id=post.id) }}" class="btn btn-outline-warning">Modifier</a>
-<form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+<a href="{{ url_for('posts.update', post_id=post.id) }}" class="btn btn-outline-warning">Modifier</a>
+<form action="{{ url_for('posts.delete', post_id=post.id) }}" method="POST" style="display:inline;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <button type="submit" class="btn btn-outline-danger">Supprimer</button>
 </form>
 {% endif %}

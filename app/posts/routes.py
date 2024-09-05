@@ -5,13 +5,13 @@ from app.extensions import db
 from app.models.post import Post
 from app.webforms import PostForm
 
-@bp.route('/post/<int:post_id>')
+@bp.route('/<int:post_id>')
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', post=post)
 
-@bp.route('/post/create', methods=('GET', 'POST'))
-def create_post():
+@bp.route('/create', methods=('GET', 'POST'))
+def create():
     form = PostForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -20,11 +20,11 @@ def create_post():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('create_post.html', form=form)
+    return render_template('posts/create.html', form=form)
 
-@bp.route('/post/<int:post_id>/edit', methods=('GET', 'POST'))
+@bp.route('/<int:post_id>/edit', methods=('GET', 'POST'))
 @login_required
-def edit_post(post_id):
+def update(post_id):
     post = Post.query.get_or_404(post_id)
     form = PostForm()
     if form.validate_on_submit():
@@ -36,12 +36,12 @@ def edit_post(post_id):
         return redirect(url_for('posts.post', post_id=post.id))
     form.title.data = post.title
     form.content.data = post.content
-    return render_template('edit_post.html', post=post, form=form)
+    return render_template('posts/edit.html', post=post, form=form)
 
 
-@bp.route('/post/<int:post_id>/delete', methods=['POST'])
+@bp.route('/<int:post_id>/delete', methods=['POST'])
 @login_required
-def delete_post(post_id):
+def delete(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
