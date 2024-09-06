@@ -2,9 +2,9 @@ from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFError
 from config import Config
-from app.extensions import db, login_manager, csrf
-from app.models.post import Post
-
+from app.extensions import db, login_manager, csrf, admin
+from app.models import User, Post
+from app.admin_views import IndexView, UserAdmin, PostAdmin
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -17,6 +17,9 @@ def create_app(config_class=Config):
     login_manager.login_message = "Veuillez vous connecter pour accéder à cette page"
     login_manager.login_message_category = "warning"
     csrf.init_app(app)
+    admin.init_app(app, index_view=IndexView())
+    admin.add_view(UserAdmin(User, db.session))
+    admin.add_view(PostAdmin(Post, db.session))
 
     from app.posts import bp as posts_bp
     app.register_blueprint(posts_bp, url_prefix='/posts')
@@ -42,3 +45,5 @@ def create_app(config_class=Config):
         return render_template('csrf_error.html', reason="Le jeton CSRF est manquant"), 403
 
     return app
+
+from app.models import load_user

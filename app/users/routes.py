@@ -1,14 +1,9 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_required, current_user, logout_user, login_user
 from app.users import bp
-from app.extensions import db, csrf
-from app.models.user import User
+from app.extensions import db
+from app.models import User
 from app.webforms import SignUpForm, LogInForm, EditUserForm
-
-@bp.route('/')
-def index():
-    users = User.query.all()
-    return render_template('users/index.html', users=users)
 
 
 @bp.route('/signup', methods=('GET', 'POST'))
@@ -21,8 +16,7 @@ def add():
         user = User(
             username=form.username.data,
             email=form.email.data,
-            password=form.password.data,
-            role='user'
+            password=form.password.data
         )
         db.session.add(user)
         db.session.commit()

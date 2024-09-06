@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField
 from wtforms.validators import Email, InputRequired, EqualTo, Length, ValidationError
-from app.models.user import User
+from app.models import User
 
 class EditUserForm(FlaskForm):
     username = StringField("Votre pseudo", validators=[InputRequired(), Length(max=20)])

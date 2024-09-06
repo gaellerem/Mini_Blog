@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app.posts import bp
 from app.extensions import db
-from app.models.post import Post
+from app.models import Post
 from app.webforms import PostForm
 
 @bp.route('/<int:post_id>')

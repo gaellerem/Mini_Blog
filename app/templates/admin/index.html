@@ -1,0 +1,61 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Tableau de bord de l'administration</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Statistiques générales
+                </div>
+                <div class="card-body">
+                    <p><strong>Nombre total d'utilisateurs :</strong> {{ user_count }}</p>
+                    <p><strong>Nombre total de posts :</strong> {{ post_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Actions rapides
+                </div>
+                <div class="card-body">
+                    <a href="{{ url_for('post.create_view') }}" class="btn btn-secondary">Ajouter un post</a>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Retourner au Blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Nouveaux utilisateurs
+                </div>
+                <div class="card-body">
+                    <ul>
+                        {% for user in recent_users %}
+                            <li>{{ user.username }} ({{ user.email }}) - Inscrit le {{ user.formatted_created }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Nouveaux posts
+                </div>
+                <div class="card-body">
+                    <ul>
+                        {% for post in recent_posts %}
+                            <li>{{ post.title }} par {{ post.author.username }} - Créé le {{ post.created.strftime("%d-%m-%Y %H:%M") }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
