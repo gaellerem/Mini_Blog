@@ -3,7 +3,7 @@ from flask_login import login_required, current_user, logout_user, login_user
 from app.users import bp
 from app.extensions import db
 from app.models import User
-from app.webforms import SignUpForm, LogInForm, EditUserForm
+from app.webforms import SignUpForm, LogInForm, EditUserForm, UpdatePasswordForm
 
 
 @bp.route('/signup', methods=('GET', 'POST'))
@@ -63,6 +63,17 @@ def update():
     form.username.data = current_user.username
     form.email.data = current_user.email
     return render_template('users/edit.html', form=form)
+
+@bp.route('/edit/pass', methods=('GET', 'POST'))
+@login_required
+def update_pass():
+    form = UpdatePasswordForm()
+    if form.validate_on_submit():
+        current_user.password=form.password.data
+        db.session.commit()
+        flash('Votre mot de passe a été mis à jour!', 'success')
+        return redirect(url_for('users.dashboard'))
+    return render_template('users/edit_pass.html', form=form)
 
 
 @bp.route('/delete', methods=['POST', 'GET'])

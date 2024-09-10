@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %}Modifier {{ current_user.username }}{% endblock %}</h1>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <br />
+        {{ form.old_password.label(class='form-label') }}
+        {{ form.old_password(class='form-control') }}
+        {% for error in form.old_password.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        <br />
+        {{ form.password.label(class='form-label') }}
+        {{ form.password(class='form-control') }}
+        {% for error in form.password.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        <br />
+        {{ form.confirm.label(class='form-label') }}
+        {{ form.confirm(class='form-control') }}
+        <br />
+        {{ form.submit(class='btn btn-secondary') }}
+    </form>
+</div>
+
+{% endblock %}

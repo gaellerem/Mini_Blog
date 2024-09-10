@@ -1,10 +1,13 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField
 from wtforms.validators import Email, InputRequired, EqualTo, Length, ValidationError
 from app.models import User
 
+
 class EditUserForm(FlaskForm):
-    username = StringField("Votre pseudo", validators=[InputRequired(), Length(max=20)])
+    username = StringField("Votre pseudo", validators=[
+                           InputRequired(), Length(max=20)])
     email = StringField("Votre email", validators=[InputRequired(), Email()])
     submit = SubmitField("Confirmer")
 
@@ -17,16 +20,39 @@ class EditUserForm(FlaskForm):
         if username.data != self.original_username:
             user = User.query.filter_by(username=username.data).first()
             if user:
-                raise ValidationError('Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.')
+                raise ValidationError(
+                    'Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.')
 
     def validate_email(self, email):
         if email.data != self.original_email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError('Cet email est déjà utilisé. Veuillez en choisir un autre.')
+                raise ValidationError(
+                    'Cet email est déjà utilisé. Veuillez en choisir un autre.')
+
+
+class UpdatePasswordForm(FlaskForm):
+    old_password = PasswordField(
+        'Mot de passe actuel', validators=[InputRequired()])
+    password = PasswordField(
+        'Modifier le mot de passe',
+        validators=[
+            InputRequired(),
+            EqualTo('confirm', message="Les mots de passe doivent correspondre")
+        ])
+    confirm = PasswordField(
+        'Confirmer le nouveau mot de passe', validators=[InputRequired()])
+    submit = SubmitField('Mettre à jour le mot de passe')
+
+    def validate_old_password(self, old_password):
+        user = User.query.filter_by(id=current_user.id).first()
+        if not user.verify_password(old_password.data):
+            raise ValidationError('Le mot de passe actuel est incorrect.')
+
 
 class SignUpForm(FlaskForm):
-    username = StringField("Votre pseudo", validators=[InputRequired(), Length(max=20)])
+    username = StringField("Votre pseudo", validators=[
+                           InputRequired(), Length(max=20)])
     email = StringField("Votre email", validators=[InputRequired(), Email()])
     password = PasswordField(
         'Votre mot de passe',
@@ -43,15 +69,16 @@ class SignUpForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError('Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.')
+            raise ValidationError(
+                'Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.')
 
     def validate_email(self, email):
         if email.errors:
             return
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('Cet email est déjà utilisé. Veuillez en renseigner un autre.')
-
+            raise ValidationError(
+                'Cet email est déjà utilisé. Veuillez en renseigner un autre.')
 
 
 class LogInForm(FlaskForm):
