@@ -18,14 +18,14 @@ def create_app(config_class=Config):
     login_manager.login_message_category = "warning"
     csrf.init_app(app)
     admin.init_app(app, index_view=IndexView())
-    admin.add_view(UserAdmin(User, db.session))
-    admin.add_view(PostAdmin(Post, db.session))
+    admin.add_view(UserAdmin(User, db.session, name="Utilisateurs"))
+    admin.add_view(PostAdmin(Post, db.session, name="Articles"))
+    
+    from app.posts import bp as post_bp
+    app.register_blueprint(post_bp, url_prefix='/post')
 
-    from app.posts import bp as posts_bp
-    app.register_blueprint(posts_bp, url_prefix='/posts')
-
-    from app.users import bp as users_bp
-    app.register_blueprint(users_bp, url_prefix='/users')
+    from app.users import bp as user_bp
+    app.register_blueprint(user_bp)
 
     @app.route('/')
     def index():
@@ -34,15 +34,15 @@ def create_app(config_class=Config):
 
     @app.errorhandler(404)
     def page_not_found(e):
-        return render_template('404.html'), 404
+        return render_template('errors/404.html'), 404
 
     @app.errorhandler(500)
     def page_not_found(e):
-        return render_template('500.html'), 500
+        return render_template('errors/500.html'), 500
 
     @app.errorhandler(CSRFError)
     def handle_csrf_error(e):
-        return render_template('csrf_error.html', reason="Le jeton CSRF est manquant"), 403
+        return render_template('errors/csrf_error.html', reason="Le jeton CSRF est manquant"), 403
 
     return app
 

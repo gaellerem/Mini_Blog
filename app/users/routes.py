@@ -51,7 +51,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@bp.route('/edit', methods=('GET', 'POST'))
+@bp.route('/user/edit', methods=('GET', 'POST'))
 @login_required
 def update():
     form = EditUserForm(current_user)
@@ -64,26 +64,32 @@ def update():
     form.email.data = current_user.email
     return render_template('users/edit.html', form=form)
 
-@bp.route('/edit/pass', methods=('GET', 'POST'))
+
+@bp.route('/user/edit/pass', methods=('GET', 'POST'))
 @login_required
 def update_pass():
     form = UpdatePasswordForm()
     if form.validate_on_submit():
-        current_user.password=form.password.data
+        current_user.password = form.password.data
         db.session.commit()
-        flash('Votre mot de passe a été mis à jour!', 'success')
+        flash('Votre mot de passe a été mis à jour !', 'success')
         return redirect(url_for('users.dashboard'))
     return render_template('users/edit_pass.html', form=form)
 
 
-@bp.route('/delete', methods=['POST', 'GET'])
+@bp.route('/user/delete', methods=['POST', 'GET'])
 @login_required
 def delete():
     user = User.query.get_or_404(current_user.id)
+    if user.is_admin:
+        admin_count = User.query.filter_by(is_admin=True).count()
+        if admin_count <= 1:
+            flash("Impossible de supprimer le dernier administrateur.", "danger")
+            return redirect(url_for('users.dashboard'))
     db.session.delete(user)
     db.session.commit()
-    flash('Profile was successfully deleted!', 'success')
-    return redirect(url_for('users.index'))
+    flash('Le profil a bien été supprimé.', 'success')
+    return redirect(url_for('index'))
 
 
 @bp.route('/dashboard')

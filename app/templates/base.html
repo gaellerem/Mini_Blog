@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -23,37 +21,37 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-      {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('users.dashboard')}}">Dashboard</a>
         </li>
-      {% endif %}
-      {% if current_user.is_admin %}
+        {% endif %}
+        {% if current_user.is_admin %}
         <li class="nav-item">
-          <a class="nav-link" href="{{url_for('admin.index')}}">Admin interface</a>
+          <a class="nav-link" href="{{url_for('admin.index')}}">Administration</a>
         </li>
-      {% endif %}
+        {% endif %}
       </ul>
       <ul class="navbar-nav ml-auto">
-      {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('users.logout')}}">{{current_user.username}} - Déconnexion</a>
         </li>
-      {% else %}
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('users.login')}}">Connexion</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('users.add')}}">Inscription</a>
         </li>
-      {% endif %}
+        {% endif %}
       </ul>
     </div>
   </nav>
   <div class="container">
-    <br/>
+    <br />
     {% for category, message in get_flashed_messages(with_categories=True) %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
+    <div class="alert alert-{{ category }}">{{ message }}</div>
     {% endfor %}
     {% block content %} {% endblock %}
   </div>

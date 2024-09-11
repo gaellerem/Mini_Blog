@@ -1,207 +1,116 @@
-{
-    "posts": [
-        {
-            "id": 18,
-            "title": "She had a terrible habit o comparing her life to others",
-            "body": "She had a terrible habit o comparing her life to others. She realized that their life experiences were completely different than her own and that she saw only what they wanted her to see, but that didn't matter. She still compared herself and yearned for what she thought they had and she didn't.",
-            "tags": [
-                "history",
-                "french",
-                "love"
-            ],
-            "reactions": {
-                "likes": 277,
-                "dislikes": 29
-            },
-            "views": 1127,
-            "userId": 1
-        },
-        {
-            "id": 19,
-            "title": "The rain and wind abruptly stopped.",
-            "body": "The rain and wind abruptly stopped, but the sky still had the gray swirls of storms in the distance. Dave knew this feeling all too well. The calm before the storm. He only had a limited amount of time before all Hell broke loose, but he stopped to admire the calmness. Maybe it would be different this time, he thought, with the knowledge deep within that it wouldn't.",
-            "tags": [
-                "fiction",
-                "crime",
-                "magical"
-            ],
-            "reactions": {
-                "likes": 566,
-                "dislikes": 2
-            },
-            "views": 2128,
-            "userId": 143
-        },
-        {
-            "id": 20,
-            "title": "He couldn't remember exactly where he had read it",
-            "body": "He couldn't remember exactly where he had read it, but he was sure that he had. The fact that she didn't believe him was quite frustrating as he began to search the Internet to find the article. It wasn't as if it was something that seemed impossible. Yet she insisted on always seeing the source whenever he stated a fact.",
-            "tags": [
-                "french",
-                "classic"
-            ],
-            "reactions": {
-                "likes": 999,
-                "dislikes": 29
-            },
-            "views": 4280,
-            "userId": 2
-        },
-        {
-            "id": 21,
-            "title": "He wandered down the stairs and into the basement",
-            "body": "He wandered down the stairs and into the basement. The damp, musty smell of un-use hung in the air. A single, small window let in a glimmer of light, but this simply made the shadows in the basement deeper. He inhaled deeply and looked around at a mess that had been accumulating for over 25 years. He was positive that this was the place he wanted to live.",
-            "tags": [
-                "french",
-                "american"
-            ],
-            "reactions": {
-                "likes": 1376,
-                "dislikes": 13
-            },
-            "views": 2738,
-            "userId": 3
-        },
-        {
-            "id": 22,
-            "title": "She has seen this scene before.",
-            "body": "She has seen this scene before. It had come to her in dreams many times before. She had to pinch herself to make sure it wasn't a dream again. As her fingers squeezed against her arm, she felt the pain. It was this pain that immediately woke her up.",
-            "tags": [
-                "classic",
-                "love",
-                "history"
-            ],
-            "reactions": {
-                "likes": 1241,
-                "dislikes": 20
-            },
-            "views": 4587,
-            "userId": 4
-        },
-        {
-            "id": 23,
-            "title": "It's an unfortunate reality that we don't teach people how to make money",
-            "body": "It's an unfortunate reality that we don't teach people how to make money (beyond getting a 9 to 5 job) as part of our education system. The truth is there are a lot of different, legitimate ways to make money. That doesn't mean they are easy and that you won't have to work hard to succeed, but it does mean that if you're willing to open your mind a bit you don't have to be stuck in an office from 9 to 5 for the next fifty years o your life.",
-            "tags": [
-                "crime",
-                "english"
-            ],
-            "reactions": {
-                "likes": 675,
-                "dislikes": 16
-            },
-            "views": 1634,
-            "userId": 1
-        },
-        {
-            "id": 24,
-            "title": "The robot clicked disapprovingly.",
-            "body": "The robot clicked disapprovingly, gurgled briefly inside its cubical interior and extruded a pony glass of brownish liquid. \"Sir, you will undoubtedly end up in a drunkard's grave, dead of hepatic cirrhosis,\" it informed me virtuously as it returned my ID card. I glared as I pushed the glass across the table.",
-            "tags": [
-                "crime",
-                "american",
-                "love"
-            ],
-            "reactions": {
-                "likes": 87,
-                "dislikes": 12
-            },
-            "views": 97,
-            "userId": 2
-        },
-        {
-            "id": 25,
-            "title": "It went through such rapid contortions",
-            "body": "It went through such rapid contortions that the little bear was forced to change his hold on it so many times he became confused in the darkness, and could not, for the life of him, tell whether he held the sheep right side up, or upside down. But that point was decided for him a moment later by the animal itself, who, with a sudden twist, jabbed its horns so hard into his lowest ribs that he gave a grunt of anger and disgust.",
-            "tags": [
-                "fiction",
-                "history",
-                "french"
-            ],
-            "reactions": {
-                "likes": 1162,
-                "dislikes": 16
-            },
-            "views": 2437,
-            "userId": 4
-        },
-        {
-            "id": 26,
-            "title": "She patiently waited for his number to be called.",
-            "body": "She patiently waited for his number to be called. She had no desire to be there, but her mom had insisted that she go. She's resisted at first, but over time she realized it was simply easier to appease her and go. Mom tended to be that way. She would keep insisting until you wore down and did what she wanted. So, here she sat, patiently waiting for her number to be called.",
-            "tags": [
-                "french",
-                "mystery",
-                "crime"
-            ],
-            "reactions": {
-                "likes": 444,
-                "dislikes": 3
-            },
-            "views": 4070,
-            "userId": 1
-        },
-        {
-            "id": 27,
-            "title": "Ten more steps.",
-            "body": "If he could take ten more steps it would be over, but his legs wouldn't move. He tried to will them to work, but they wouldn't listen to his brain. Ten more steps and it would be over but it didn't appear he would be able to do it.",
-            "tags": [
-                "mystery",
-                "classic",
-                "love"
-            ],
-            "reactions": {
-                "likes": 1387,
-                "dislikes": 35
-            },
-            "views": 3218,
-            "userId": 2
-        },
-        {
-            "id": 28,
-            "title": "He had three simple rules by which he lived.",
-            "body": "He had three simple rules by which he lived. The first was to never eat blue food. There was nothing in nature that was edible that was blue. People often asked about blueberries, but everyone knows those are actually purple. He understood it was one of the stranger rules to live by, but it had served him well thus far in the 50+ years of his life.",
-            "tags": [
-                "crime",
-                "love"
-            ],
-            "reactions": {
-                "likes": 1291,
-                "dislikes": 18
-            },
-            "views": 3531,
-            "userId": 3
-        },
-        {
-            "id": 29,
-            "title": "The chair sat in the corner where it had been",
-            "body": "The chair sat in the corner where it had been for over 25 years. The only difference was there was someone actually sitting in it. How long had it been since someone had done that? Ten years or more he imagined. Yet there was no denying the presence in the chair now.",
-            "tags": [
-                "mystery",
-                "american"
-            ],
-            "reactions": {
-                "likes": 1,
-                "dislikes": 1
-            },
-            "views": 43,
-            "userId": 3
-        },
-        {
-            "id": 30,
-            "title": "Things aren't going well at all",
-            "body": "Things aren't going well at all with mom today. She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.",
-            "tags": [
-                "american",
-                "love",
-                "fiction"
-            ],
-            "reactions": {
-                "likes": 465,
-                "dislikes": 30
-            },
-            "views": 3558,
-            "userId": 3
-        }
-    ]
-}
+[
+    {
+        "title": "L'essor de l'intelligence artificielle",
+        "content": "L'intelligence artificielle (IA) transforme de nombreux secteurs, de la sante a l'education. Cet article explore les dernieres avancees en IA et leurs implications pour l'avenir.",
+        "created": "2023-10-01T10:00:00",
+        "user_id": 1
+    },
+    {
+        "title": "Voyage dans l'espace : la prochaine frontiere",
+        "content": "Avec les recentes missions spatiales de SpaceX et de la NASA, l'exploration de l'espace est plus excitante que jamais. Decouvrez les projets futurs et les defis a relever.",
+        "created": "2023-11-15T11:00:00",
+        "user_id": 2
+    },
+    {
+        "title": "Les energies renouvelables en 2024",
+        "content": "Les energies renouvelables sont au coeur de la transition energetique. Cet article examine les innovations recentes et les perspectives pour 2024.",
+        "created": "2023-12-20T12:00:00",
+        "user_id": 1
+    },
+    {
+        "title": "La revolution de la blockchain",
+        "content": "La blockchain ne se limite plus aux cryptomonnaies. Decouvrez comment cette technologie est utilisee dans divers secteurs pour ameliorer la securite et la transparence.",
+        "created": "2024-01-10T13:00:00",
+        "user_id": 3
+    },
+    {
+        "title": "L'impact du teletravail sur la productivite",
+        "content": "Le teletravail est devenu la norme pour de nombreux employes. Cet article analyse son impact sur la productivite et les meilleures pratiques pour travailler a distance.",
+        "created": "2024-02-25T14:00:00",
+        "user_id": 2
+    },
+    {
+        "title": "Les tendances culinaires de 2024",
+        "content": "De la cuisine vegetalienne aux nouvelles techniques de cuisson, explorez les tendances culinaires qui marqueront l'annee 2024.",
+        "created": "2024-03-30T15:00:00",
+        "user_id": 1
+    },
+    {
+        "title": "La montee en puissance des vehicules electriques",
+        "content": "Les vehicules electriques gagnent en popularite. Cet article examine les dernieres innovations et les defis a surmonter pour une adoption massive.",
+        "created": "2024-04-15T16:00:00",
+        "user_id": 3
+    },
+    {
+        "title": "L'evolution des reseaux sociaux",
+        "content": "Les reseaux sociaux continuent d'evoluer. Decouvrez les nouvelles fonctionnalites et les tendances qui faconnent l'avenir des plateformes sociales.",
+        "created": "2024-05-01T17:00:00",
+        "user_id": 2
+    },
+    {
+        "title": "L'impact de l'IA sur le marché du travail",
+        "content": "L'intelligence artificielle modifie la nature du travail. Cet article explore comment l'IA redéfinit les emplois et les compétences nécessaires pour l'avenir.",
+        "created": "2024-06-10T10:00:00",
+        "user_id": 4
+    },
+    {
+        "title": "Les avancées en médecine personnalisée",
+        "content": "La médecine personnalisée promet des traitements sur mesure pour chaque patient. Découvrez les dernières innovations et leurs implications pour la santé.",
+        "created": "2024-07-20T11:00:00",
+        "user_id": 5
+    },
+    {
+        "title": "La cybersécurité à l'ère du numérique",
+        "content": "Avec l'augmentation des cyberattaques, la cybersécurité est plus importante que jamais. Cet article examine les stratégies pour protéger les données et les systèmes.",
+        "created": "2024-08-15T12:00:00",
+        "user_id": 6
+    },
+    {
+        "title": "Les villes intelligentes de demain",
+        "content": "Les villes intelligentes utilisent la technologie pour améliorer la qualité de vie. Explorez les projets innovants et les défis à relever pour les villes du futur.",
+        "created": "2024-09-05T13:00:00",
+        "user_id": 7
+    },
+    {
+        "title": "L'essor des technologies vertes",
+        "content": "Les technologies vertes jouent un rôle crucial dans la lutte contre le changement climatique. Cet article explore les innovations et les perspectives pour un avenir durable.",
+        "created": "2024-10-25T14:00:00",
+        "user_id": 8
+    },
+    {
+        "title": "L'évolution de l'éducation en ligne",
+        "content": "L'éducation en ligne transforme la manière dont nous apprenons. Découvrez les tendances et les meilleures pratiques pour l'enseignement à distance.",
+        "created": "2024-11-30T15:00:00",
+        "user_id": 9
+    },
+    {
+        "title": "Les défis de la transition énergétique",
+        "content": "La transition énergétique est essentielle pour un avenir durable. Cet article examine les obstacles à surmonter et les solutions possibles.",
+        "created": "2024-12-10T16:00:00",
+        "user_id": 10
+    },
+    {
+        "title": "L'innovation dans l'industrie alimentaire",
+        "content": "L'industrie alimentaire évolue rapidement grâce à l'innovation. Découvrez les nouvelles technologies et les tendances qui façonnent l'avenir de l'alimentation.",
+        "created": "2024-06-15T17:00:00",
+        "user_id": 11
+    },
+    {
+        "title": "Les nouvelles frontières de la biotechnologie",
+        "content": "La biotechnologie ouvre de nouvelles possibilités dans divers domaines. Cet article explore les avancées récentes et leurs implications pour la société.",
+        "created": "2024-07-20T18:00:00",
+        "user_id": 12
+    },
+    {
+        "title": "L'impact des technologies immersives",
+        "content": "Les technologies immersives comme la réalité virtuelle et augmentée transforment de nombreux secteurs. Découvrez leurs applications et leur potentiel.",
+        "created": "2024-06-25T19:00:00",
+        "user_id": 13
+    },
+    {
+        "title": "Les tendances du marché immobilier en 2025",
+        "content": "Le marché immobilier évolue avec les nouvelles technologies et les changements démographiques. Cet article examine les tendances et les perspectives pour 2025.",
+        "created": "2024-08-30T20:00:00",
+        "user_id": 14
+    }
+]

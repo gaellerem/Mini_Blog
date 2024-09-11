@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h1>Tableau de bord de l'administration</h1>
+    <h1>{%block title%}Tableau de bord{% endblock %} de l'administration</h1>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -21,8 +21,9 @@
                     Actions rapides
                 </div>
                 <div class="card-body">
-                    <a href="{{ url_for('post.create_view') }}" class="btn btn-secondary">Ajouter un post</a>
-                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Retourner au Blog</a>
+                    <a href="{{ url_for('user.create_view') }}" class="btn btn-secondary btn-sm">Ajouter un utilisateur</a>
+                    <a href="{{ url_for('post.create_view') }}" class="btn btn-secondary btn-sm">Ajouter un article</a>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary btn-sm">Retourner au Blog</a>
                 </div>
             </div>
         </div>

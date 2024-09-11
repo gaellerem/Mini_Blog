@@ -107,3 +107,34 @@ class PostForm(FlaskForm):
     title = StringField("Titre", validators=[InputRequired()])
     content = TextAreaField("Contenu", validators=[InputRequired()])
     submit = SubmitField("Confirmer")
+
+# ------ Admin Forms ---------
+class CreateUserForm(FlaskForm):
+    username = StringField("Pseudo", validators=[
+                           InputRequired(), Length(max=20)])
+    email = StringField("Email", validators=[InputRequired(), Email()])
+    password = PasswordField(
+        'Mot de passe',
+        validators=[
+            InputRequired(),
+            EqualTo('confirm', message="Les mots de passe doivent correspondre")
+        ])
+    confirm = PasswordField(
+        'Confirmer le mot de passe',
+        validators=[InputRequired()]
+    )
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError(
+                'Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.')
+
+    def validate_email(self, email):
+        if email.errors:
+            return
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError(
+                'Cet email est déjà utilisé. Veuillez en renseigner un autre.')
+

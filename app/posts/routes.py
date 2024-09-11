@@ -6,9 +6,9 @@ from app.models import Post
 from app.webforms import PostForm
 
 @bp.route('/<int:post_id>')
-def post(post_id):
+def view(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', post=post)
+    return render_template('posts/view.html', post=post)
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
@@ -33,7 +33,7 @@ def update(post_id):
         post.title = title
         post.content = content
         db.session.commit()
-        return redirect(url_for('posts.post', post_id=post.id))
+        return redirect(url_for('posts.view', post_id=post.id))
     form.title.data = post.title
     form.content.data = post.content
     return render_template('posts/edit.html', post=post, form=form)
@@ -45,6 +45,6 @@ def delete(post_id):
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
-    flash("L'article a bien été supprimé !", 'success')
+    flash("L'article a bien été supprimé.", 'success')
     return redirect(url_for('index'))
 
