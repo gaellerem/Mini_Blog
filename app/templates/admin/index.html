@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h1>{%block title%}Tableau de bord{% endblock %} de l'administration</h1>
+    <h1>{%block title%}Tableau de bord{% endblock %}</h1>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -10,6 +10,7 @@
                     Statistiques générales
                 </div>
                 <div class="card-body">
+                    <p><strong>Nombre total d'administrateurs :</strong> {{ admin_count }}</p>
                     <p><strong>Nombre total d'utilisateurs :</strong> {{ user_count }}</p>
                     <p><strong>Nombre total de posts :</strong> {{ post_count }}</p>
                 </div>
@@ -21,7 +22,8 @@
                     Actions rapides
                 </div>
                 <div class="card-body">
-                    <a href="{{ url_for('user.create_view') }}" class="btn btn-secondary btn-sm">Ajouter un utilisateur</a>
+                    <a href="{{ url_for('user.create_view') }}" class="btn btn-secondary btn-sm">Ajouter un
+                        utilisateur</a>
                     <a href="{{ url_for('post.create_view') }}" class="btn btn-secondary btn-sm">Ajouter un article</a>
                     <a href="{{ url_for('index') }}" class="btn btn-secondary btn-sm">Retourner au Blog</a>
                 </div>
@@ -37,7 +39,10 @@
                 <div class="card-body">
                     <ul>
                         {% for user in recent_users %}
-                            <li>{{ user.username }} ({{ user.email }}) - Inscrit le {{ user.formatted_created }}</li>
+                        <li>
+                            <a href="{{ url_for('user.details_view', id=user.id) }}">{{ user.username }}</a>
+                            - Inscrit le {{ user.formatted_created }}
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -51,7 +56,9 @@
                 <div class="card-body">
                     <ul>
                         {% for post in recent_posts %}
-                            <li>{{ post.title }} par {{ post.author.username }} - Créé le {{ post.created.strftime("%d-%m-%Y %H:%M") }}</li>
+                        <li>
+                            <a href="{{ url_for('post.details_view', id=post.id) }}">{{ post.title }}</a> par {{ post.author.username }} - Créé le {{ post.formatted_created }}
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
