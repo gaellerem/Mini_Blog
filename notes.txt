@@ -1,9 +1,0 @@
-set FLASK_APP=app.py
-set FLASK_ENV=development
-
-flask run
-
-#créer la migration
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
