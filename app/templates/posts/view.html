@@ -2,7 +2,8 @@
 
 {% block content %}
 <h2>{% block title %} {{ post.title }} {% endblock %}</h2>
-<span class="badge badge-light">{{ post.formatted_created }}</span>
+<span class="badge badge-dark">{{ post.author.username }}</span>
+<span class="badge badge-secondary">{{ post.formatted_created }}</span>
 <p>{{ post.content }}</p>
 {% if post.user_id == current_user.id %}
 <hr>
