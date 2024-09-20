@@ -20,7 +20,7 @@ def create_app(config_class=Config):
     admin.init_app(app, index_view=IndexView())
     admin.add_view(UserAdmin(User, db.session, name="Utilisateurs"))
     admin.add_view(PostAdmin(Post, db.session, name="Articles"))
-    
+
     from app.posts import bp as post_bp
     app.register_blueprint(post_bp, url_prefix='/post')
 

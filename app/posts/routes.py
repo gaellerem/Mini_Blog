@@ -11,6 +11,7 @@ def view(post_id):
     return render_template('posts/view.html', post=post)
 
 @bp.route('/create', methods=('GET', 'POST'))
+@login_required
 def create():
     form = PostForm()
     if form.validate_on_submit():
@@ -26,6 +27,9 @@ def create():
 @login_required
 def update(post_id):
     post = Post.query.get_or_404(post_id)
+    if post.user_id != current_user.id:
+        flash("Vous n'êtes pas autorisé à modifier cet article.", 'danger')
+        return redirect(url_for('index'))
     form = PostForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -43,6 +47,9 @@ def update(post_id):
 @login_required
 def delete(post_id):
     post = Post.query.get_or_404(post_id)
+    if post.user_id != current_user.id:
+        flash("Vous n'êtes pas autorisé à supprimer cet article.", 'danger')
+        return redirect(url_for('index'))
     db.session.delete(post)
     db.session.commit()
     flash("L'article a bien été supprimé.", 'success')
