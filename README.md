@@ -20,7 +20,7 @@ Dépendance : python 3.12.3, pip 24.0
 
 Commande console sous windows
 
- 1. Cloner le repertoire [https://github.com/gaellerem/Bloc3](https://github.com/gaellerem/Bloc3)
+ 1. Cloner le repertoire
  2. Créer un environnement virtuel
     ``` console
     python -m venv env
